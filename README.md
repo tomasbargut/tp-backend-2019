@@ -3,8 +3,9 @@
 TP Backend
 1 - Enunciado:
     En un mundo donde la sociedad se ve dejada de lado por los metodos de comunicación convencionales, los cuales ante el imperio reptiliano mantiene su control
-    de masas mediante el control mental producido por mensajes subliminales llega una app(aka YACA= lista para hacerle frente al nuevo orden mundial.
+    de masas mediante el control mental producido por mensajes subliminales llega una app(aka YACA) lista para hacerle frente al nuevo orden mundial.
     La cual permitirá mantener una conversacion sin riesgos para las personas.
+
 1.1 - Desarrollo
 
 Desarrollar un backend utilizando una API REST o GraphQL y un frontend parcial con las siguientes caracterísitcas:
