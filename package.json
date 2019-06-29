@@ -1,0 +1,28 @@
+{
+  "name": "tp-backend-2019",
+  "version": "1.0.0",
+  "description": "TP Backend 1 - Enunciado 1.1 - Desarrollo",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/utnfrrottads/tp-backend-2019.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/utnfrrottads/tp-backend-2019/issues"
+  },
+  "homepage": "https://github.com/utnfrrottads/tp-backend-2019#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.6.2",
+    "nodemon": "^1.19.1"
+  }
+}
