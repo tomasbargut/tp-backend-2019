@@ -2,7 +2,7 @@
 ---
 Se necesita docker y docker-compose
 
-Una ves instalado todo y arrancado docker
+Una vez instalado todo y arrancado docker
 
 `docker-compose up`
 
