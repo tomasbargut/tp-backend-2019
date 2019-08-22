@@ -33,5 +33,5 @@ Aplicacion de mensajeria sencilla y altamente extensible
 ## Integrantes 
 
 1. Bruno Dolce     42090
-2. Nahuel Alvarez
+2. Nahuel Alvarez  42197
 3. Tomás Bargut    42939
