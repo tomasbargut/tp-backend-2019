@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
-import { AuthTabsComponent } from '../componets/auth-tabs/auth-tabs.component';
+import { AuthTabsComponent } from '../components/auth-tabs/auth-tabs.component';
 
 const routes: Routes = [
   {
