@@ -17,6 +17,9 @@
     "url": "https://gitlab.com/tomasbargut/tp-backend-2019/issues"
   },
   "homepage": "https://gitlab.com/tomasbargut/tp-backend-2019#readme",
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

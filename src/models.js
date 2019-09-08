@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-const DBURI = process.env.MONGO_DBURI;
-const USER = process.env.MONGO_USER;
-const PWD = process.env.MONGO_PWD;
+const config = require('./config');
 
-mongoose.connect(DBURI, { useNewUrlParser: true });
+
+mongoose.connect(config.DBURI, { useNewUrlParser: true });
 
 const User = mongoose.model('users', {
     username: String,
@@ -11,4 +10,10 @@ const User = mongoose.model('users', {
     googleid: String
 });
 
-module.exports.User = User;
+const Message = mongoose.model('messages', {
+    content: String,
+    emiter: String,
+    receptor: String
+});
+
+module.exports = {User, Message};

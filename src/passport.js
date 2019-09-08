@@ -3,14 +3,16 @@ const { BasicStrategy } = require('passport-http');
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const { ExtractJwt } = require('passport-jwt');
 const JWTStrategy = require('passport-jwt').Strategy;
-const {User} = require('./models');
+const { UserService } = require('./services');
+
+const userService = new UserService();
 
 passport.use(new BasicStrategy(
     async (username, password, done) => {
-        const user = await User.findOne({
+        const user = await userService.findOne({
             username: username,
             password: password
-        }).select('-password -_id')
+        });
         if(!user){
             return done(null, false);
         }
@@ -22,7 +24,7 @@ passport.use(new JWTStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.JWT_SECRET
 }, async (jwt_payload, done) => {
-    const user = await User.findOne(jwt_payload);
+    const user = await userService.getOneById(jwt_payload._id);
     if (user) {
         return done(null, user);
     } else {
@@ -34,10 +36,10 @@ passport.use(new GoogleStrategy({
     clientID: process.env.GCLIENT_ID,
     clientSecret: process.env.GCLIENT_SECRET,
     callbackURL: process.env.GCALLBACK_URL
-},async (token, refreshToken, profile, done) => {
-    let user = await User.findOne({googleid: profile.id});
+}, async (token, refreshToken, profile, done) => {
+    let user = await userService.findOne({googleid: profile.id});
     if(!user) {
-       user = await User.create({username: profile.displayName, googleid: profile.id});
+       user = await userService.create({username: profile.displayName, googleid: profile.id});
     }
     return done(null, user);
 }));
