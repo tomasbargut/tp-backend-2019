@@ -2,6 +2,9 @@ const { User } = require('../models');
 
 module.exports = class UserService{
 
+    find(userData){
+        return this._filter(User.find(userData));
+    }
     findOne(userData) {    
         return this._filter(User.findOne(userData));;
     }
