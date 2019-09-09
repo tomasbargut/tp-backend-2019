@@ -8,7 +8,7 @@ app.use(passport.initialize());
 app.use(express.json());
 
 app.use('/auth', auth);
-app.use('/user', user);
+app.use('/user', passport.authenticate('jwt', {session: false}), user);
 app.use('/api', passport.authenticate('jwt', {session: false}), api);
 
 app.listen(3000, () => {
