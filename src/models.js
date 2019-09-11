@@ -1,19 +1,23 @@
 const mongoose = require('mongoose');
 const config = require('./config');
-
+const Schema = mongoose.Schema
 
 mongoose.connect(config.DBURI, { useNewUrlParser: true });
 
-const User = mongoose.model('users', {
+const userSchema = Schema({
     username: String,
     password: String,
     googleid: String
 });
 
-const Message = mongoose.model('messages', {
+const messageSchema = Schema({
     content: String,
-    emiter: String,
-    receptor: String
-});
+    emiter: { type: Schema.Types.ObjectId, ref: 'User'},
+    receptor: { type: Schema.Types.ObjectId, ref: 'User'}
+}, {timestamps: true})
+
+const User = mongoose.model('users', userSchema);
+
+const Message = mongoose.model('messages', );
 
 module.exports = {User, Message};
