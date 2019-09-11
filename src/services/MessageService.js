@@ -8,6 +8,11 @@ module.exports = class MessageService {
         return (message.emiter == user.id || message.receptor == user.id) ? message: null;  
     }
 
+    async find() {
+        const messages = await Message.find()
+        return messages
+    }
+
     async create(messageData) {
         const receptor = await userService.getOneById(messageData.receptor);
         if(!receptor) {

@@ -5,7 +5,7 @@ const message_router = express.Router();
 const messageService = new MessageService();
 
 message_router.get('/', async (req, res) => {
-    res.send('Unos mensajes');
+    res.json(await messageService.find());
 });
 
 // TODO: Implementar
