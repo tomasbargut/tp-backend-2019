@@ -15,3 +15,7 @@ div.bodyContainer {
 .tabs .active{
   background: inherit !important;
 }
+
+.auth-content{
+  height: 503 px !important;
+}
