@@ -1,13 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+// const logger = require('morgan');
 
 const app = express();
 const dbConfig = require('./config/secret');
+app.use(express.json({
+    limit: '50mb'
+})); //Return our information in json format
+app.use(express.urlencoded({
+    extended: true,
+    limit: '50mb'
+}));
 
 app.use(cookieParser()); //save a cookie tooken for testing
-app.use(logger('dev')); //development
+// app.use(logger('dev')); //development
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
