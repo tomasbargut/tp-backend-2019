@@ -1,5 +1,26 @@
 # YACA (Yet Another Chat Aplication)
 
+## Empezar a desarrollar
+
+``` bash
+# Uri para conectarse a mongo
+export MONGO_DBURI="mongodb://localhost:27017/yaca"
+
+# Clave para generar el JWT
+export JWT_SECRET="falopa"
+
+# Url a la que redirije el api ante autentificaciones externas
+export CALLBACK_URL="{{url de la aplicacion front end}}"
+
+### Credenciales otorgadas por google https://console.developers.google.com/
+export GCLIENT_ID = "client id otorgado por google"
+export GCLIENT_SECRET: "client secret otrogado por google"
+export GCALLBACK_URL: "http://localhost:3000/auth/google/callback" #callback de nuestra api registrada en google
+
+npm start # esto corre "node src/app.js"
+```
+
+
 ## Enunciado
 
 Aplicacion de mensajeria sencilla y altamente extensible

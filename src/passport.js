@@ -1,3 +1,4 @@
+const config = require('./config');
 const passport = require('passport');
 const { BasicStrategy } = require('passport-http');
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
@@ -22,7 +23,7 @@ passport.use(new BasicStrategy(
 
 passport.use(new JWTStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: process.env.JWT_SECRET
+    secretOrKey: config.JWT_SECRET
 }, async (jwt_payload, done) => {
     const user = await userService.getOneById(jwt_payload._id);
     if (user) {
@@ -33,9 +34,9 @@ passport.use(new JWTStrategy({
 }));
 
 passport.use(new GoogleStrategy({
-    clientID: process.env.GCLIENT_ID,
-    clientSecret: process.env.GCLIENT_SECRET,
-    callbackURL: process.env.GCALLBACK_URL
+    clientID: config.GCLIENT_ID,
+    clientSecret: config.GCLIENT_SECRET,
+    callbackURL: config.GCALLBACK_URL
 }, async (token, refreshToken, profile, done) => {
     let user = await userService.findOne({googleid: profile.id});
     if(!user) {

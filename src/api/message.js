@@ -17,6 +17,10 @@ message_router.get('/:messageid', async (req, res) => {
     return res.status(200).json(message);
 })
 
+message_router.put('/:messageid', async(req, res) => {
+    // TODO: Implementar edicion de mensajes
+})
+
 // TODO: Implementar
 message_router.post('/', async (req, res) => {
     const messageData = req.body;

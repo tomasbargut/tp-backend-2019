@@ -1,5 +1,6 @@
 const passport = require('../passport');
 const express = require('express');
+const config = require('../config');
 const { AuthService } = require('../services');
 
 const authService = new AuthService();
@@ -23,7 +24,7 @@ auth.get('/google', passport.authenticate('google', {
 auth.get('/google/callback', passport.authenticate('google', { session: false }),
     async (req, res) => {
         const { user, token } = await authService.login(req.user);
-        return res.redirect('/?token=' + token);
+        return res.redirect(`${config.CALLBACK_URL}/?token=${token}`);
     }
 );
 

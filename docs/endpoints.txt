@@ -1,0 +1,13 @@
+/auth 
+    /login [POST] :Genera el token para usar la api
+    /signup [POST] :Crea un usuario
+    /google [GET] :Autentificacion con google
+        /callback [GET] :Callback para oauth de google
+/user 
+    / [GET] :Listado de usuarios y busqueda
+    /{id} [GET] :Usuario espefico
+    /me [GET] :Datos del usuario del token
+/api
+    /message
+        / [GET, POST] :Listado y creacion de mensajes
+        /{id} [GET, PUT] :Edicion y datos mensaje en espefico
