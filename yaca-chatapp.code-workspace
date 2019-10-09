@@ -7,5 +7,7 @@
       "path": "yaca-backend"
     }
   ],
-  "settings": {}
+  "settings": {
+    "python.pythonPath": "/usr/bin/python3"
+  }
 }
