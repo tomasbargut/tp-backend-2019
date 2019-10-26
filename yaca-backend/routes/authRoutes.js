@@ -7,5 +7,6 @@ const AuthCtrl = require('../controllers/auth');
 
 //For autentification we need...
 router.post('/register', AuthCtrl.CreateUser);
+router.post('/login', AuthCtrl.LoginUser);
 
 module.exports = router;

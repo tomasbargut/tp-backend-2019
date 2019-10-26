@@ -22,8 +22,10 @@ module.exports = {
         .required()
     });
 
-    const { error, value } = Joi.validate(req.body, schema);
-    console.log(value);
+    const {
+      error,
+      value
+    } = Joi.validate(req.body, schema);
     if (error && error.details) {
       return res.status(HttpStatus.BAD_REQUEST).json({
         msg: error.details
@@ -58,8 +60,10 @@ module.exports = {
       };
       User.create(body)
         .then(user => {
-          const token = jwt.sign({ data: user }, dbConfig.secret, {
-            expiresIn: 120
+          const token = jwt.sign({
+            data: user
+          }, dbConfig.secret, {
+            expiresIn: '1h'
           });
           res.cookie('auth', token);
           res.status(HttpStatus.CREATED).json({
@@ -74,5 +78,44 @@ module.exports = {
           });
         });
     });
+  },
+  async LoginUser(req, res) {
+    if (!req.body.username || !req.body.password) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        message: 'No empty fields allowed'
+      });
+    }
+    await User.findOne({
+        username: Helpers.firstUpper(req.body.username)
+      }).then(user => {
+        if (!user) {
+          return res.status(HttpStatus.NOT_FOUND).json({
+            message: 'Username or Password incorrect'
+          });
+        }
+        return bcrypt(req.body.password, user.password).then((result) => {
+          if (!result) {
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+              message: 'Username or Password is incorrect'
+            });
+          }
+          const token = jwt.sign({
+            data: user
+          }, dbConfig.secret, {
+            expiresIn: '1h'
+          });
+          res.cookie('auth', token);
+          return res.status(HttpStatus.OK).json({
+            message: 'Login succesful',
+            user,
+            token
+          });
+        })
+      })
+      .catch(err => {
+        return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+          message: 'Error occured'
+        });
+      })
   }
 };
