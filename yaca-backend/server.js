@@ -41,7 +41,10 @@ mongoose.connect(
     });
 
 const auth = require('./routes/authRoutes');
+const posts = require('./routes/postRoutes');
+
 app.use('/api/yacapp', auth); // Every url that we have will have this
+app.use('api/yacapp', posts);
 
 app.listen(3000, () => {
     console.log('Running on port 3000');

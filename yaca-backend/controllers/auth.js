@@ -18,7 +18,6 @@ module.exports = {
         .required(),
       password: Joi.string()
         .min(5)
-        .regex(/^[a-zA-Z0-9]{3,30}$/)
         .required()
     });
 
@@ -63,7 +62,7 @@ module.exports = {
           const token = jwt.sign({
             data: user
           }, dbConfig.secret, {
-            expiresIn: '1h'
+            expiresIn: "1h"
           });
           res.cookie('auth', token);
           res.status(HttpStatus.CREATED).json({
@@ -77,7 +76,7 @@ module.exports = {
             message: 'Error occured'
           });
         });
-    });
+    })
   },
   async LoginUser(req, res) {
     if (!req.body.username || !req.body.password) {
@@ -110,12 +109,12 @@ module.exports = {
             user,
             token
           });
-        })
+        });
       })
       .catch(err => {
         return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
           message: 'Error occured'
         });
-      })
+      });
   }
 };
