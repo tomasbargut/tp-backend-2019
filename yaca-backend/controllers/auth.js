@@ -92,7 +92,7 @@ module.exports = {
             message: 'Username or Password incorrect'
           });
         }
-        return bcrypt(req.body.password, user.password).then((result) => {
+        return bcrypt.compare(req.body.password, user.password).then((result) => {
           if (!result) {
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
               message: 'Username or Password is incorrect'
