@@ -6,7 +6,8 @@ const router = express.Router(); //We can to export the router
 const PostCtrl = require('../controllers/posts');
 const AuthHelper = require('../Helpers/AuthHelper');
 
+router.get('/posts', AuthHelper.VerifyToken, PostCtrl.GetAllPosts);
 //For autentification we need...
-router.post('/post/add-post', PostCtrl.AddPost);
+router.post('/post/add-post', AuthHelper.VerifyToken, PostCtrl.AddPost);
 
 module.exports = router;

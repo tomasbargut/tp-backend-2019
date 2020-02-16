@@ -11,7 +11,21 @@ const userSchema = mongoose.Schema({
     },
     password: {
         type: String
-    }
+    },
+    posts: [{
+        postId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Post'
+        },
+        post: {
+            type: String
+        },
+        created: {
+            type: Date,
+            default: Date.now()
+        }
+
+    }]
 });
 // The next thing is to export the user schema
 module.exports = mongoose.model('User', userSchema);
