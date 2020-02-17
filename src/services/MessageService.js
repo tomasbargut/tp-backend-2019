@@ -8,9 +8,20 @@ module.exports = class MessageService {
         return (message.emiter == user.id || message.receptor == user.id) ? message: null;  
     }
 
-    async find() {
-        const messages = await Message.find()
+    async find(user) {
+        const messages = await Message.find({
+            $or: [{emiter: user},{receptor: user}]
+        })
         return messages
+    }
+
+    async findByReceptor(emiter, receptor) {
+      
+      const messages = await Message.find().or([ 
+        { emiter: emiter, receptor: receptor},
+        { receptor: emiter, emiter: receptor }
+      ]);
+      return messages
     }
 
     async create(messageData) {
