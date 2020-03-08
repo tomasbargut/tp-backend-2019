@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('./config/config');
 const passport = require('passport');
 const { BasicStrategy } = require('passport-http');
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
