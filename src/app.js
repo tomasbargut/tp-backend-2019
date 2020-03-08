@@ -1,8 +1,11 @@
 const express = require('express');
 const passport = require('passport');
 const cors = require('cors');
-const http = require('http');
-const {user,auth,api} = require('./api');
+const {
+    user,
+    auth,
+    api
+} = require('./api');
 
 const app = express();
 
@@ -17,10 +20,10 @@ app.use('/api', passport.authenticate('jwt', {
     session: false
 }), api);
 
-const server = http.createServer(app);
+const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-io.on('connection', (socket) => {
+io.on('connection', function (socket) {
     console.log('A user connected');
     socket.emit('test event', 'PUTO EL QUE LEE');
 });
