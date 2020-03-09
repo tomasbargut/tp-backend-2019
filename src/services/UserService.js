@@ -3,10 +3,10 @@ const { User } = require('../models');
 module.exports = class UserService{
 
     find(userData){
-        return this._filter(User.find(userData));
+        return User.find(userData);
     }
     findOne(userData) {    
-        return this._filter(User.findOne(userData));;
+        return this._filter(User.findOne(userData));
     }
 
     getOneById(id) {
@@ -15,6 +15,7 @@ module.exports = class UserService{
 
     async create(userData) { // FIXME: Muy complejo
         // TODO: Validation
+
         const user = await User.create(userData);
         return this.getOneById(user._id);
     }

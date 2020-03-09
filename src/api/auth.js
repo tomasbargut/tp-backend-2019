@@ -1,12 +1,12 @@
 const passport = require('../passport');
 const express = require('express');
-const config = require('../config');
+const config = require('../config/config');
 const { AuthService } = require('../services');
 
 const authService = new AuthService();
 const auth = express.Router();
 
-auth.post('/login', passport.authenticate('basic', { session: false, }),
+auth.post('/login', passport.authenticate('basic', { session: false}),
     async (req, res) => {
         const { user, token } = await authService.login(req.user);
         return res.status(201).json({ user, token });

@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config');
+const config = require('../config/config');
 const UserService = require('./UserService');
+const passwordHash = require('../utils/passwordhash');
 
 const userService = new UserService();
 
@@ -13,7 +14,8 @@ module.exports = class AuthSevice {
     }
 
     async signUp(userData) {
-        // TODO: Hash Password
+        // TODO: Hash Password Done
+        userData.password = passwordHash.createHash(userData.password);
         const user = await userService.create({
             ...userData
         });

@@ -5,16 +5,18 @@ const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const { ExtractJwt } = require('passport-jwt');
 const JWTStrategy = require('passport-jwt').Strategy;
 const { UserService } = require('./services');
+const passwordHash = require('./utils/passwordhash');
 
 const userService = new UserService();
 
 passport.use(new BasicStrategy(
-    async (username, password, done) => {
+    async(username, password, done) => {
         const user = await userService.findOne({
-            username: username,
-            password: password
-        });
+            username: username});
         if(!user){
+            return done(null, false);
+        }
+        if(!passwordHash.compareHash(password, user.password)){
             return done(null, false);
         }
         return done(null, user);
