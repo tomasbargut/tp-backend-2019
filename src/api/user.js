@@ -7,7 +7,7 @@ const messagesService = new MessageService();
 const userRouter = express.Router();
 
 userRouter.get('/me', async (req, res) => {
-    return res.json(req.user);
+    return  res.json(req.user);
 });
 
 userRouter.get('/', async (req,res) => {
